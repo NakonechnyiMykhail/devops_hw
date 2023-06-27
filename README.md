@@ -1,3 +1,3 @@
 # devops_hw
 
-## cool feature at the new branch
+## cool feature at the second branch
