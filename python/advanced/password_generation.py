@@ -60,13 +60,13 @@ class PasswordGenerator:
         Args:
             length (int, optional): Length of the password. Defaults to None.
         """
-        self.text = """Welcome to the Linux User Password Generator!"""
+        self.description = """Welcome to the Linux User Password Generator!"""
         self.length = length
 
     def hello(self):
         """_summary_
         """
-        return self.text
+        return self.description
 
     def generate_password(self):
         """Generate a secure password.
@@ -130,3 +130,28 @@ class PasswordGenerator:
             print("Error:", str(exc))
         except Exception as exc:
             print("An error occurred:", str(exc))
+
+    def check_password_requirements(self, password):
+        """
+        Check if the password meets the specified requirements.
+
+        Args:
+            password (str): Password to check.
+
+        Returns:
+            bool: True if the password meets the requirements, False otherwise.
+        """
+        minimum_length = 8
+        has_lowercase = any(char.islower() for char in str(password))
+        has_uppercase = any(char.isupper() for char in str(password))
+        has_digit = any(char.isdigit() for char in str(password))
+        has_special_char = any(
+            char in string.punctuation for char in str(password))
+
+        return (
+            len(password) >= minimum_length
+            and has_lowercase
+            and has_uppercase
+            and has_digit
+            and has_special_char
+        )
