@@ -1,0 +1,36 @@
+name: Python CI
+on: [push, pull_request]
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Install Poetry
+      run: |
+        curl -sSL https://install.python-poetry.org | python -
+        source $HOME/.poetry/env
+
+    - name: Install dependencies
+      run: poetry install
+
+    - name: Run wemake-python-styleguide linting
+      run: poetry run wemake-python-styleguide python/
+
+    - name: Run tests
+      run: poetry run python3 python/main.py --run-tests
