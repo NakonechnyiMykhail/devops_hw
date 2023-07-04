@@ -72,7 +72,9 @@ class UserPasswordChangerTests(unittest.TestCase):
         """
         # Password meets the requirements
         password = "Passw0rd!"
-        self.assertTrue(self.password_changer.check_password_requirements(password))
+        self.assertTrue(
+            self.password_changer.check_password_requirements(password)
+        )
 
     def test_check_password_requirements_does_not_meet_requirements(self):
         """
@@ -85,7 +87,9 @@ class UserPasswordChangerTests(unittest.TestCase):
         """
         # Password does not meet the requirements
         password = "weakpassword"
-        self.assertFalse(self.password_changer.check_password_requirements(password))
+        self.assertFalse(
+            self.password_changer.check_password_requirements(password)
+        )
 
     def test_generate_password(self):
         """

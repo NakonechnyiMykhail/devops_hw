@@ -1,35 +1,13 @@
 #!/usr/bin/python3
 import argparse
-import getpass
 import unittest
 from advanced.password_generation import PasswordGenerator
+from advanced.user_password_changer import UserPasswordChanger
+from advanced.calculator import Calculator
 from tests.test_password_generation import PasswordGeneratorTests
 from tests.test_user_password_changer import UserPasswordChangerTests
-from advanced.user_password_changer import UserPasswordChanger
+from tests.test_calculator import CalculatorTests
 
-
-def user_change_password():
-    """
-    Change the user's password based on user input.
-
-    Prompts the user to enter a username and a new password. If no password is
-    provided, a random password will be generated.
-    Then, the password is changed for the user. Prints the result of the
-    operation.
-
-    """
-    password_changer = UserPasswordChanger()
-    username, password = password_changer.get_user_input()
-
-    if not password:
-        password = password_changer.generate_password()
-
-    success = password_changer.change_password(username, password)
-
-    if success:
-        print(f"Password changed for user '{username}'.")
-    else:
-        print("Failed to change the password.")
 
 def main():
     """
@@ -37,6 +15,8 @@ def main():
 
     Run script:
         python main.py --generate-password
+        python main.py --change-user-pass
+        python main.py --calc
         python main.py --run-tests
         python main.py --generate-password --run-tests
     """
@@ -63,6 +43,13 @@ def main():
         action="store_true",
         help="Run the user password changing",
     )
+    parser.add_argument(
+        "--calc",
+        required=False,
+        dest="calc",
+        action="store_true",
+        help="Run calculator",
+    )
     args = parser.parse_args()
 
     if args.generate_password:
@@ -76,8 +63,16 @@ def main():
         print(password_changer.hello())
         password_changer.change_password()
 
+    if args.calc:
+        calculator = Calculator()
+        calculator.hello()
+        calculator.run_calculator()
 
     if args.run_tests:
+        print(f'Running: {CalculatorTests.__doc__}')
+        unittest.TextTestRunner().run(
+            unittest.TestLoader().loadTestsFromTestCase(CalculatorTests)
+        )
         print(f'Running: {PasswordGeneratorTests.__doc__}')
         unittest.TextTestRunner().run(
             unittest.TestLoader().loadTestsFromTestCase(PasswordGeneratorTests)

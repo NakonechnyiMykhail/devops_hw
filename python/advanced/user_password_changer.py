@@ -14,7 +14,9 @@ class UserPasswordChanger:
         """
         self.minimal_default_length = 16
         self.description = """User password changer"""
-        self.password_generator = PasswordGenerator(self.minimal_default_length)
+        self.password_generator = PasswordGenerator(
+            self.minimal_default_length
+        )
 
     def hello(self):
         """_summary_
@@ -29,7 +31,9 @@ class UserPasswordChanger:
             tuple: Username and password entered by the user.
         """
         username = input("Enter the username: ")
-        password = getpass.getpass("Enter the new password (leave blank to generate one): ")
+        password = getpass.getpass(
+            "Enter the new password (leave blank to generate one): "
+        )
         return username, password
 
     def check_user_exist(self, username):
@@ -76,7 +80,8 @@ class UserPasswordChanger:
                 If None, a random password will be generated.
 
         Returns:
-            bool: True if the password is successfully changed, False otherwise.
+            bool:
+                True if the password is successfully changed, False otherwise.
         """
         username, password = self.get_user_input()
 
@@ -88,14 +93,18 @@ class UserPasswordChanger:
             print(f"User '{username}' does not exist.")
             return False
 
-
         if not self.check_password_requirements(password):
             print("The password does not meet the requirements.")
             return False
 
-        password_hash = crypt.crypt(str(password), crypt.mksalt(crypt.METHOD_SHA512))
+        password_hash = crypt.crypt(
+            str(password),
+            crypt.mksalt(crypt.METHOD_SHA512)
+        )
         try:
-            subprocess.check_call(["sudo", "usermod", "-p", password_hash, username])
+            subprocess.check_call(
+                ["sudo", "usermod", "-p", password_hash, username]
+            )
             print(f"Password changed for user '{username}'.")
             return True
         except subprocess.CalledProcessError:
