@@ -14,7 +14,7 @@ jobs:
       fail-fast: false
       matrix:
         python-version: [3.8, 3.9, 3.10, 3.11]
-        poetry-version: [1.1.4]
+        poetry-version: [1.5]
 
     runs-on: ubuntu-latest
 
@@ -34,15 +34,18 @@ jobs:
         python -m pip install poetry==${{ matrix.poetry-version }}
 
     - name: View poetry --help
-      run: poetry --help
+      run: python -m poetry --help
 
     - name: Install dependencies
       shell: bash
-      run: python -m poetry install python/
+      working-directory: ./python/
+      run: python -m poetry install
 
     - name: Run wemake-python-styleguide linting
-      run: python -m poetry run wemake-python-styleguide python/
+      working-directory: ./python/
+      run: python -m poetry run wemake-python-styleguide 
 
     - name: Test with pytest
+      working-directory: ./python/
       run: |
-        python -m poetry run python python/main.py --run-tests
+        python -m poetry run python main.py --run-tests
