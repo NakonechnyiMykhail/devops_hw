@@ -1,10 +1,15 @@
 #!/usr/bin/python3
+from sys import exit as ex
+
 
 class Calculator:
     """Calculator class for performing arithmetic operations."""
 
     def __init__(self):
         self.description = """Welcome to the Calculator Program!"""
+        self.number1 = None
+        self.number2 = None
+        self.operation = None
         self.operations = {
             1: self.add,
             2: self.subtract,
@@ -38,32 +43,71 @@ class Calculator:
             raise ZeroDivisionError("Division by zero is not allowed.")
         return number1 / number2
 
+    def print_operation_menu(self):
+        """_summary_
+        """
+        print("\nPlease select an operation:")
+        for i in self.operations:
+            print(f"{i}. {self.operations[i].__name__}")
+
+    def input_number(self, prompt):
+        """Input a number from the user."""
+        while True:
+            try:
+                number = float(input(prompt))
+                return number
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
+            except TypeError as typeerr:
+                print(f"Error: {str(typeerr)}")
+
+    def select_operation(self):
+        """Select an operation from the available options."""
+        while True:
+            try:
+                self.print_operation_menu()
+
+                operation = int(input("Enter your choice (1-4): "))
+                if operation not in self.operations:
+                    raise \
+                        ValueError(
+                            "Invalid choice. \
+                                Please select a valid operation (1-4).")
+                if operation not in self.operations.keys():
+                    raise KeyError(
+                        "Invalid choice. \
+                            Please select a valid operation (1-4).")
+                return operation
+            except TypeError as typeerr:
+                print(f"Error: {str(typeerr)}")
+                return False
+            except ValueError as valerr:
+                print(f"Error: {str(valerr)}")
+                return False
+            except KeyError as keyerr:
+                print(f"Error: {str(keyerr)}")
+
     def run_calculator(self):
         """Run the calculator program."""
         try:
-            # Prompt the user to enter two numbers
-            num1 = float(input("Please enter the first number: "))
-            num2 = float(input("Please enter the second number: "))
-
-            # Prompt the user to select an operation
-
-            print("\nPlease select an operation:")
-            print("1. Addition")
-            print("2. Subtraction")
-            print("3. Multiplication")
-            print("4. Division")
-
-            operation = int(input("Enter your choice (1-4): "))
-
-            # Perform the corresponding calculation based on the selected
-            # operation
-            if operation in self.operations:
+            while not self.number1 or not self.number2 or not self.operation:
                 try:
-                    result = self.operations[operation](num1, num2)
-                    print("\nThe result is:", result)
-                except ZeroDivisionError as zeroexc:
-                    print("Error:", str(zeroexc))
-            else:
-                print("Invalid choice. Please select a valid operation (1-4).")
-        except ValueError:
-            print("Invalid input. Please enter valid numbers.")
+                    self.number1 = self.input_number(
+                        "Please enter the first number: ")
+                    self.number2 = self.input_number(
+                        "Please enter the second number: ")
+                    self.operation = self.select_operation()
+                except KeyboardInterrupt:
+                    print("\nUser interrupted. Exiting...")
+                    ex()
+
+            result = self.operations[self.operation](
+                self.number1,
+                self.number2)
+            print("\nThe result is:", result)
+
+        except ZeroDivisionError as zeroexc:
+            print("Error:", str(zeroexc))
+        except KeyboardInterrupt:
+            print("\nUser interrupted. Exiting...")
+            ex()
