@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      #- 'python*'
+      - 'python*'
   pull_request:
     branches:
       - main
@@ -47,7 +47,6 @@ jobs:
     #   run: python -m poetry run wemake-python-styleguide
 
     - name: wemake-python-styleguide
-      working-directory: ./python/
       uses: wemake-services/wemake-python-styleguide@0.18.0
 
     - name: Test with pytest
