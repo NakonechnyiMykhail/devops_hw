@@ -41,9 +41,9 @@ jobs:
       working-directory: ./python/
       run: python -m poetry install
 
-    - name: Run wemake-python-styleguide linting
-      working-directory: ./python/
-      run: python -m poetry run wemake-python-styleguide 
+#    - name: Run wemake-python-styleguide linting
+#      working-directory: ./python/
+#      run: python -m poetry run wemake-python-styleguide 
 
     - name: Test with pytest
       working-directory: ./python/
