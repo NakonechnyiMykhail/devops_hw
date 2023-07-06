@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 'python*'
   pull_request:
     branches:
       - main
@@ -13,7 +14,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [3.8, 3.9, 3.10, 3.11]
+        python-version: [3.8, 3.9, 3.10.12, 3.11]
         poetry-version: [1.5]
 
     runs-on: ubuntu-latest
@@ -41,9 +42,13 @@ jobs:
       working-directory: ./python/
       run: python -m poetry install
 
-#    - name: Run wemake-python-styleguide linting
-#      working-directory: ./python/
-#      run: python -m poetry run wemake-python-styleguide 
+    # - name: Run wemake-python-styleguide linting
+    #   working-directory: ./python/
+    #   run: python -m poetry run wemake-python-styleguide
+
+    - name: wemake-python-styleguide
+      working-directory: ./python/
+      uses: wemake-services/wemake-python-styleguide@0.18.0
 
     - name: Test with pytest
       working-directory: ./python/
