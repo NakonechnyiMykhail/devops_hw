@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 
 import unittest
+import pwd
+import os
 from unittest.mock import patch
 from advanced.user_password_changer import UserPasswordChanger
 
@@ -47,7 +49,10 @@ class UserPasswordChangerTests(unittest.TestCase):
 
         """
         # Existing user
-        username = "test"
+        # Using getpwuid() and getuid we are
+        # printing current username
+        username = str(pwd.getpwuid(os.getuid())[0])
+        # username = "test"
         self.assertTrue(self.password_changer.check_user_exist(username))
 
     def test_check_user_exist_non_existing_user(self):
