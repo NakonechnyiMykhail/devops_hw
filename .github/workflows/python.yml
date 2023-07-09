@@ -50,7 +50,6 @@ jobs:
       working-directory: ./python/
       uses: wemake-services/wemake-python-styleguide@0.18.0
 
-
     - name: Test with pytest
       working-directory: ./python/
       run: |
