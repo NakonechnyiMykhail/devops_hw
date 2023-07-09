@@ -177,17 +177,17 @@ class PasswordGenerator:
             new_length (None): _description_
         """
         if new_length is not None:
+            # try:
             # length_input = \
             #     abs(int(round(float(self.length))))
             # Check correct length
-            try:
-                if not isinstance(new_length, int):
-                    raise TypeError(self.type_length_err)
-                if new_length < 0 or new_length < 16:
-                    raise ValueError(self.value_err)
-                self.length = new_length
-            except (TypeError, ValueError, Exception) as err:
-                print(f"Error: {str(err)}")
+            if not isinstance(new_length, int):
+                raise TypeError(self.type_length_err)
+            if new_length < 0 or new_length < 16:
+                raise ValueError(self.value_err)
+            self.length = new_length
+            # except (TypeError, ValueError, Exception) as err:
+            #     print(f"Error: {str(err)}")
         # check if user set length value in constructor
         elif self.is_set is True and not self.setdefault:
             if not isinstance(self.setlength, int):
