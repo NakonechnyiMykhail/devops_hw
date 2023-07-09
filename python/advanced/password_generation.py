@@ -111,7 +111,7 @@ sure to include clear instructions and error handling for invalid input.
 TODO: fix logic to access getter as default case in setters methor or defaults
 '''
 
-import sys
+from sys import exit as ex
 import random
 import string
 
@@ -180,11 +180,14 @@ class PasswordGenerator:
             # length_input = \
             #     abs(int(round(float(self.length))))
             # Check correct length
-            if not isinstance(new_length, int):
-                raise TypeError(self.type_length_err)
-            if new_length < 0 or new_length < 16:
-                raise ValueError(self.value_err)
-            self.length = new_length
+            try:
+                if not isinstance(new_length, int):
+                    raise TypeError(self.type_length_err)
+                if new_length < 0 or new_length < 16:
+                    raise ValueError(self.value_err)
+                self.length = new_length
+            except (TypeError, ValueError, Exception) as err:
+                print(f"Error: {str(err)}")
         # check if user set length value in constructor
         elif self.is_set is True and not self.setdefault:
             if not isinstance(self.setlength, int):
@@ -214,7 +217,7 @@ class PasswordGenerator:
                     print(f"Error: {str(err)}")
                 except KeyboardInterrupt:
                     print("\nUser interrupted. Exiting...")
-                    sys.exit()
+                    ex()
         elif self.setdefault:
             self.length = self.setlength
 
@@ -241,10 +244,13 @@ class PasswordGenerator:
             ValueError: _description_
         """
         if include_uppercase is not None:
-            # Check correct include_uppercase
-            if not isinstance(include_uppercase, bool):
-                raise ValueError("Include uppercase must be a boolean.")
-            self.include_uppercase = include_uppercase
+            try:
+                # Check correct include_uppercase
+                if not isinstance(include_uppercase, bool):
+                    raise ValueError("Include uppercase must be a boolean.")
+                self.include_uppercase = bool(include_uppercase)
+            except (TypeError, ValueError, Exception) as err:
+                print(f"Error: {str(err)}")
         # check if user set include_uppercase value in constructor
         elif self.is_set is True and not self.setdefault:
             # Check correct include_uppercase
@@ -268,7 +274,7 @@ class PasswordGenerator:
                     break
                 except KeyboardInterrupt:
                     print("\nUser interrupted. Exiting...")
-                    sys.exit()
+                    ex()
         # set default value
         elif self.setdefault:
             self.include_uppercase = self.setinclude_uppercase
@@ -294,10 +300,13 @@ class PasswordGenerator:
             ValueError: _description_
         """
         if include_lowercase is not None:
-            # Check correct include_lowercase
-            if not isinstance(include_lowercase, bool):
-                raise ValueError("Include lowercase must be a boolean.")
-            self.include_lowercase = include_lowercase
+            try:
+                # Check correct include_lowercase
+                if not isinstance(include_lowercase, bool):
+                    raise ValueError("Include lowercase must be a boolean.")
+                self.include_lowercase = bool(include_lowercase)
+            except (TypeError, ValueError, Exception) as err:
+                print(f"Error: {str(err)}")
         # check if user set include_lowercase value in constructor
         elif self.is_set is True and not self.setdefault:
             # Check correct include_lowercase
@@ -329,7 +338,7 @@ class PasswordGenerator:
                     print(f"Error: {str(exc)}")
                 except KeyboardInterrupt:
                     print("\nUser interrupted. Exiting...")
-                    sys.exit()
+                    ex()
         # set default value
         elif self.setdefault:
             self.include_lowercase = self.setinclude_lowercase
@@ -356,10 +365,13 @@ class PasswordGenerator:
         """
 
         if include_digits is not None:
-            # Check correct include_digits
-            if not isinstance(include_digits, bool):
-                raise ValueError("Include digits must be a boolean.")
-            self.include_digits = include_digits
+            try:
+                # Check correct include_digits
+                if not isinstance(include_digits, bool):
+                    raise ValueError("Include digits must be a boolean.")
+                self.include_digits = bool(include_digits)
+            except (TypeError, ValueError, Exception) as err:
+                print(f"Error: {str(err)}")
         # check if user set include_digits value in constructor
         elif self.is_set is True and not self.setdefault:
             # Check correct include_digits
@@ -391,7 +403,7 @@ class PasswordGenerator:
                     print(f"Error: {str(exc)}")
                 except KeyboardInterrupt:
                     print("\nUser interrupted. Exiting...")
-                    sys.exit()
+                    ex()
         # set default value
         elif self.setdefault:
             self.include_digits = self.setinclude_digits
@@ -417,11 +429,14 @@ class PasswordGenerator:
             ValueError: _description_
         """
         if include_special_chars is not None:
-            # Check correct include_special_chars
-            if not isinstance(include_special_chars, bool):
-                raise ValueError(
-                    "Include special_chars must be a boolean.")
-            self.include_special_chars = include_special_chars
+            try:
+                # Check correct include_special_chars
+                if not isinstance(include_special_chars, bool):
+                    raise ValueError(
+                        "Include special_chars must be a boolean.")
+                self.include_special_chars = include_special_chars
+            except (TypeError, ValueError, Exception) as err:
+                print(f"Error: {str(err)}")
         # check if user set include_special_chars value in constructor
         elif self.is_set is True and not self.setdefault:
             # Check correct include_special_chars
@@ -455,7 +470,7 @@ class PasswordGenerator:
                     print(f"Error: {str(exc)}")
                 except KeyboardInterrupt:
                     print("\nUser interrupted. Exiting...")
-                    sys.exit()
+                    ex()
         # set default value
         elif self.setdefault:
             self.include_special_chars = self.setinclude_special_chars
