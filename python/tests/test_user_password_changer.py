@@ -31,15 +31,15 @@ class UserPasswordChangerTests(unittest.TestCase):
             mock_getpass (MagicMock): Mock for the getpass.getpass function.
         """
         # Mock user input
-        mock_input.side_effect = ["test", "password"]
-        mock_getpass.return_value = "password"
+        mock_input.side_effect = ["test", "passwordFS213!@#$"]
+        mock_getpass.return_value = "passwordFS213!@#$"
 
         # Call the method
-        username, password = self.password_changer.get_user_input()
+        username, password = self.password_changer.get_input()
 
         # Assert the results
         self.assertEqual(username, "test")
-        self.assertEqual(password, "password")
+        self.assertEqual(password, "passwordFS213!@#$")
 
     def test_check_user_exist_existing_user(self):
         """
@@ -76,7 +76,7 @@ class UserPasswordChangerTests(unittest.TestCase):
 
         """
         # Password meets the requirements
-        password = "Passw0rd!"
+        password = "Passw0rd!Fasf@4asf"
         self.assertTrue(
             self.password_changer.check_password_requirements(password)
         )
@@ -91,18 +91,31 @@ class UserPasswordChangerTests(unittest.TestCase):
 
         """
         # Password does not meet the requirements
-        password = "weakpassword"
+        # password = ["weakpasswordasfasffafs",
+        #             "31413411411241241444",
+        #             "ASFASFASFASFFASFASF",
+        #             "@#$@#$!@$#$!@$!@$!$@!$",
+        #             "ASFASFfasfasfAFASFASFAF"]
+        passw = "weakpassword"
+        # for passw in password:
         self.assertFalse(
-            self.password_changer.check_password_requirements(password)
-        )
+                self.password_changer.check_password_requirements(passw)
+            )
 
-    def test_generate_password(self):
+    @patch("builtins.input")
+    def test_generate_password(self, mock_input):
         """
         Test the generate_password method.
 
         Checks if the generated password has the expected length.
+        Mocks the user input and verifies that the method returns the expected
+        password.
 
+        Args:
+            mock_input (MagicMock): Mock for the built-in input function.
         """
+        # Mock user input
+        mock_input.side_effect = ["16", "y", "y", "y", "y"]
         # Generate a password
         password = self.password_changer.generate_password()
 
