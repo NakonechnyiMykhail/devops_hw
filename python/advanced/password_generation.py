@@ -98,15 +98,28 @@ sure to include clear instructions and error handling for invalid input.
     Add any additional features or enhancements to the program if you desire,
         as long as the basic requirements are met.
 
+
 ### ** Note **: You may use any built-in Python libraries or functions related
         to random number generation or string manipulation to complete this
         assignment.
+
+### Documentation (Updated docstring)
+
+
+    Write comprehensive docstrings for each function and class in your
+    refactored code. Include descriptions, parameter explanations, return
+    value details, and any relevant examples.
+    Ensure your docstrings follow the recommended format (e.g., Google-style
+    or reStructuredText).
+
+    set `sphinx` style
 
 ### Versions:
 * 1.0 function realization
 * 2.0 OOP realization
 * 2.1 Fix Error Exception
 * 2.2 Change Logic with new requirements (HW 3)
+* 2.3 Set sphinx docsting
 
 TODO: fix logic to access getter as default case in setters methor or defaults
 '''
@@ -125,16 +138,14 @@ class PasswordGenerator:
         """
         Initialize a PasswordGenerator object.
 
-        Args:
-            length (int, optional): Length of the password. Defaults to None.
-            include_uppercase (bool, optional): Whether to include uppercase
-                letters. Defaults to True.
-            include_lowercase (bool, optional): Whether to include lowercase
-                letters. Defaults to True.
-            include_digits (bool, optional): Whether to include digits.
-                Defaults to True.
-            include_special_chars (bool, optional): Whether to include special
-                characters. Defaults to True.
+        :param int length: Length of the password. (Optional)
+        :param bool include_uppercase: Whether to include uppercase letters.
+            (Optional)
+        :param bool include_lowercase: Whether to include lowercase letters.
+            (Optional)
+        :param bool include_digits: Whether to include digits. (Optional)
+        :param bool include_special_chars: Whether to include special
+            characters. (Optional)
         """
         self.description = """Welcome to the Linux User Password Generator!"""
         self.is_set = kwargs.get('is_set', None)
@@ -156,25 +167,35 @@ class PasswordGenerator:
     #     print("PasswordGenerator object deleted.")
 
     def hello(self) -> str:
-        """_summary_
+        """
+        Return the welcome message.
+
+        :return: The welcome message.
+        :rtype: str
         """
         return self.description
 
     def get_var_length_error(self):
-        """_summary_
+        """
+        Get the error message for invalid length value.
+
+        :return: The error message.
         """
         return self.value_err
 
     def get_type_length_error(self):
-        """_summary_
+        """
+        Get the error message for invalid length type.
+
+        :return: The error message.
         """
         return self.type_length_err
 
     def set_length(self, new_length=None) -> None:
-        """_summary_
+        """
+        Set the length of the password.
 
-        Args:
-            new_length (None): _description_
+        :param int new_length: The new length value. (Optional)
         """
         if new_length is not None:
             # try:
@@ -222,12 +243,11 @@ class PasswordGenerator:
             self.length = self.setlength
 
     def get_length(self) -> int:
-        """_summary_
+        """
+        Get the length of the password.
 
-        if length is not set yet, can get minimal of default length
-
-        Returns:
-            int: _description_
+        :return: The length of the password.
+        :rtype: int
         """
         if self.length is not None:
             return int(self.length)
@@ -235,13 +255,11 @@ class PasswordGenerator:
             return 16
 
     def set_include_uppercase(self, include_uppercase=None) -> None:
-        """_summary_
+        """
+        Set whether to include uppercase letters.
 
-        Args:
-            include_uppercase (_type_): _description_
-
-        Raises:
-            ValueError: _description_
+        :param bool include_uppercase: Whether to include uppercase letters.
+            (Optional)
         """
         if include_uppercase is not None:
             try:
@@ -280,10 +298,11 @@ class PasswordGenerator:
             self.include_uppercase = self.setinclude_uppercase
 
     def get_include_uppercase(self) -> bool:
-        """_summary_
+        """
+        Get whether to include uppercase letters.
 
-        Returns:
-            _type_: _description_
+        :return: Whether to include uppercase letters.
+        :rtype: bool
         """
         if self.include_uppercase is not None:
             return bool(self.include_uppercase)
@@ -291,13 +310,11 @@ class PasswordGenerator:
             return True
 
     def set_include_lowercase(self, include_lowercase=None) -> None:
-        """_summary_
+        """
+        Set whether to include lowercase letters.
 
-        Args:
-            include_lowercase (_type_): _description_
-
-        Raises:
-            ValueError: _description_
+        :param bool include_lowercase: Whether to include lowercase letters.
+            (Optional)
         """
         if include_lowercase is not None:
             try:
@@ -344,10 +361,11 @@ class PasswordGenerator:
             self.include_lowercase = self.setinclude_lowercase
 
     def get_include_lowercase(self) -> bool:
-        """_summary_
+        """
+        Get whether to include lowercase letters.
 
-        Returns:
-            _type_: _description_
+        :return: Whether to include lowercase letters.
+        :rtype: bool
         """
         if self.include_lowercase is not None:
             return bool(self.include_lowercase)
@@ -355,13 +373,10 @@ class PasswordGenerator:
             return True
 
     def set_include_digits(self, include_digits=None) -> None:
-        """_summary_
+        """
+        Set whether to include digits.
 
-        Args:
-            include_digits (_type_): _description_
-
-        Raises:
-            ValueError: _description_
+        :param bool include_digits: Whether to include digits. (Optional)
         """
 
         if include_digits is not None:
@@ -409,10 +424,11 @@ class PasswordGenerator:
             self.include_digits = self.setinclude_digits
 
     def get_include_digits(self) -> bool:
-        """_summary_
+        """
+        Get whether to include digits.
 
-        Returns:
-            _type_: _description_
+        :return: Whether to include digits.
+        :rtype: bool
         """
         if self.include_digits is not None:
             return bool(self.include_digits)
@@ -420,13 +436,11 @@ class PasswordGenerator:
             return True
 
     def set_include_special_chars(self, include_special_chars=None) -> None:
-        """_summary_
+        """
+        Set whether to include special characters.
 
-        Args:
-            include_special_chars (_type_): _description_
-
-        Raises:
-            ValueError: _description_
+        :param bool include_special_chars: Whether to include special
+            characters. (Optional)
         """
         if include_special_chars is not None:
             try:
@@ -476,10 +490,11 @@ class PasswordGenerator:
             self.include_special_chars = self.setinclude_special_chars
 
     def get_include_special_chars(self) -> bool:
-        """_summary_
+        """
+        Get whether to include special characters.
 
-        Returns:
-            _type_: _description_
+        :return: Whether to include special characters.
+        :rtype: bool
         """
         if self.include_special_chars is not None:
             return self.include_special_chars
@@ -487,7 +502,8 @@ class PasswordGenerator:
             return True
 
     def prompt_password_criteria(self) -> None:
-        """_summary_
+        """
+        Prompt the user to enter the password criteria.
         """
         self.set_length()
         self.set_include_uppercase()
@@ -496,10 +512,11 @@ class PasswordGenerator:
         self.set_include_special_chars()
 
     def default_password_generation(self) -> str:
-        """_summary_
+        """
+        Generate a default password.
 
-        Returns:
-            _type_: _description_
+        :return: The generated password.
+        :rtype: str
         """
         try:
             # Define character sets
@@ -536,10 +553,11 @@ class PasswordGenerator:
             return ""
 
     def generate_password(self) -> str:
-        """Generate a secure password.
+        """
+        Generate a secure password.
 
-        Returns:
-            str: Generated password.
+        :return: The generated password.
+        :rtype: str
         """
         try:
             if self.setdefault:
@@ -598,13 +616,12 @@ class PasswordGenerator:
 
     def check_default_password_requirements(self, password):
         """
-        Check if the password meets the specified requirements.
+        Check if the default password meets the specified requirements.
 
-        Args:
-            password (str): Password to check.
+        :param str password: The password to check.
 
-        Returns:
-            bool: True if the password meets the requirements, False otherwise.
+        :return: True if the password meets the requirements, False otherwise.
+        :rtype: bool
         """
         minimum_length = 16
         has_lowercase = any(char.islower() for char in str(password))
@@ -625,12 +642,10 @@ class PasswordGenerator:
         """
         Check if the password meets the specified requirements.
 
-        Args:
-            password (str): Password to check.
+        :param str password: The password to check.
 
-        Returns:
-            bool:   True if the password meets the requirements,
-                    False otherwise.
+        :return: True if the password meets the requirements, False otherwise.
+        :rtype: bool
         """
         if self.length is not None:
             minimum_length = self.length
