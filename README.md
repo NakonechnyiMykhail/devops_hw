@@ -4,7 +4,7 @@
 
 ## Lections:
 
-## Homeworks 
+## Homeworks
 
 ### 1. Homework Assignment: [Git Mastery](https://github.com/devops01ua/git_internal)
 #### Task 1: Repository Basics
@@ -149,9 +149,9 @@ Your task is to develop a Python script that implements the Linux chpasswd simul
 *    Change password for user
 *    The program should print the results, including the username, the original or generated password, and whether the password meets the requirements.
 
-##### Useful Links 
-[link1](https://www.maketecheasier.com/how-linux-stores-manages-user-passwords/) 
-[link2](https://www.section.io/engineering-education/how-to-execute-linux-commands-in-python/) 
+##### Useful Links
+[link1](https://www.maketecheasier.com/how-linux-stores-manages-user-passwords/)
+[link2](https://www.section.io/engineering-education/how-to-execute-linux-commands-in-python/)
 [link3](https://unix.stackexchange.com/questions/238180/execute-shell-commands-in-python)
 
 
@@ -219,3 +219,18 @@ The script generates a deployment report summarizing the deployment status for e
 Remember to customize the script according to your specific deployment requirements and server configurations.
 
 ##### Useful links
+
+
+
+
+
+## Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+```
+
+Feel free to modify the instructions and content according to your specific project.
