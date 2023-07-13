@@ -146,6 +146,10 @@ class PasswordGenerator:
         :param bool include_digits: Whether to include digits. (Optional)
         :param bool include_special_chars: Whether to include special
             characters. (Optional)
+
+        Example:
+        generator = PasswordGenerator()
+        password = generator.generate_password()
         """
         self.description = """Welcome to the Linux User Password Generator!"""
         self.is_set = kwargs.get('is_set', None)
@@ -172,6 +176,10 @@ class PasswordGenerator:
 
         :return: The welcome message.
         :rtype: str
+
+        Example:
+        generator = PasswordGenerator()
+        print(generator.hello())
         """
         return self.description
 
