@@ -1,4 +1,8 @@
 # devops_hw
+---
+
+![actions](https://github.com/NakonechnyiMykhail/devops_hw/actions/workflows/python.yml/badge.svg)
+
 
 ## Description
 
