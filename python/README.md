@@ -49,6 +49,27 @@ This is a Python project for running most used scripts such as:
 
 ## Usage example
 
+### Usage CLI
+
+1. Run calculator
+
+```bash
+python3 main.py --calc
+```
+
+2. Run password generation
+
+```bash
+python3 main.py --generate-password
+```
+
+3. Run script to change user password
+
+```bash
+python3 main.py --change-user-pass
+```
+
+### Intro to modules
 You can use the `PasswordGenerator` class in your Python code to generate secure passwords.
 
 ```python
