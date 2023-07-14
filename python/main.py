@@ -19,6 +19,9 @@ def main():
         python main.py --calc
         python main.py --run-tests
         python main.py --generate-password --run-tests
+
+        TODO: check flake and linters for quality code, SAST and etc
+            in github actions
     """
     parser = argparse.ArgumentParser(description="Usefull scripts")
 

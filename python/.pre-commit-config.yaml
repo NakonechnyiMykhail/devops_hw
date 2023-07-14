@@ -1,6 +1,27 @@
 repos:
 -   repo: local
     hooks:
+    -   id: autopep8
+        name: autopep8
+        description: Auto-format code using autopep8
+        entry: autopep8
+        args: ["--in-place", "--aggressive", "--aggressive", "--recursive", "--config=setup.cfg"]
+        language: python
+        types: [python]
+    -   id: isort
+        name: isort
+        description: Sort imports using isort
+        entry: isort
+        args: ["--recursive", "--config=setup.cfg"]
+        language: python
+        types: [python]
+    -   id: add-trailing-comma
+        name: add-trailing-comma
+        description: Add trailing commas using add-trailing-comma
+        entry: add-trailing-comma
+        args: ["--recursive", "--config=setup.cfg"]
+        language: python
+        types: [python]
     -   id: flake8
         name: flake8
         description: wemake-python-styleguide enforcement
